@@ -25,7 +25,7 @@ export class ListesProvider {
   }
 
   Ajouter(nom) {
-    var liste = {};
+    var liste = {id: 0, nom: "", produit : []};
     var id = this.GenerateId();
     liste.id = id;
     liste.nom = nom;
