@@ -1,3 +1,4 @@
+import { ProduitsPage } from './../produits/produits';
 import { ListesProvider } from './../../providers/listes/listes';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -17,6 +18,10 @@ export class HomePage {
     this.ListesProvider.GetListes().then((res)=>{
       scope.listes = res;
     })
+  }
+
+  GoProduits(myObj) {
+    this.navCtrl.push(ProduitsPage, {id:myObj.id});
   }
 
   ModalAjout() {

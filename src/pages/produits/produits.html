@@ -6,13 +6,17 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>produits</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{liste.nom}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-fab bottom right>
+    <button ion-fab mini (tap)="Scanner()"><ion-icon name="barcode"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

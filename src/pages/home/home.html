@@ -11,7 +11,7 @@
 
   <ion-list>
         <ion-item-sliding *ngFor="let liste of listes">
-          <ion-item>
+          <ion-item (tap)="GoProduits(liste)">
             <h2>{{liste.nom}}</h2>
           </ion-item>
           <ion-item-options side="left">

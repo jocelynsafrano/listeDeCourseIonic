@@ -91,8 +91,13 @@ export class ListesProvider {
         resolve(true);
       }
     })
-
-
+   }
+   
+   GetListe(id) {
+    for(var i=0; i<this.listes.length; i++) {
+      if(this.listes[i].id == id) return this.listes[i];
+    }
+    
   }
 }
 
