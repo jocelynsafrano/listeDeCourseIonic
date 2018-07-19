@@ -52,6 +52,7 @@ export class ListesProvider {
     var scope = this;
     return new Promise <any> ((resolve, reject)=>{
       scope.storage.get("listes").then((res)=>{
+        res = (res == null) ? [] : res;
         resolve(res);
       })
     })
