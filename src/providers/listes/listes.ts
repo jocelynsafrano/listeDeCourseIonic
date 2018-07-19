@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class ListesProvider {
-  public listes : [any] = [];
+  public listes = [];
 
 //  public listes : any;
 
@@ -34,7 +34,7 @@ export class ListesProvider {
   }
 
   Ajouter(nom) {
-    return new Promise((resolve, reject) => {
+    return new Promise <any> ((resolve, reject) => {
     var liste = {id: 0, nom: "", produit : []};
     var id = this.GenerateId();
     liste.id = id;
@@ -48,7 +48,7 @@ export class ListesProvider {
 
   GetListes() {
     var scope = this;
-    return new Promise((resolve, reject)=>{
+    return new Promise <any> ((resolve, reject)=>{
       scope.storage.get("listes").then((res)=>{
         resolve(res);
       })
@@ -57,7 +57,7 @@ export class ListesProvider {
 
   Modifier(nouvNom, oldObj) {
     var scope = this;
-    return new Promise((resolve, reject)=>{
+    return new Promise <any> ((resolve, reject)=>{
       var index = scope.listes.indexOf(oldObj);
       
       var index = -1;
@@ -75,7 +75,7 @@ export class ListesProvider {
 
   Supprimer(oldObj){
     var scope = this;
-    return new Promise((resolve, reject)=>{
+    return new Promise <any> ((resolve, reject)=>{
       var index = scope.listes.indexOf(oldObj);
       
       var index = -1;
