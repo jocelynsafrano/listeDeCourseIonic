@@ -26,16 +26,18 @@ export class ListesProvider {
   }
 
   GenerateId() {
-      var id = 0;
-      for(var i=0; i<this.listes.length; i++){
-        if(this.listes[i].id > id) id = this.listes[i].id;
-      }
-      return ++id;
+    return (new Date().getTime() + Math.floor((Math.random()*1000) +1)).toString(16); 
+
+    // var id = 0;
+      // for(var i=0; i<this.listes.length; i++){
+      //   if(this.listes[i].id > id) id = this.listes[i].id;
+      // }
+      // return ++id;
   }
 
   Ajouter(nom) {
     return new Promise <any> ((resolve, reject) => {
-    var liste = {id: 0, nom: "", produit : []};
+    var liste = {id: "", nom: "", produit : []};
     var id = this.GenerateId();
     liste.id = id;
     liste.nom = nom;
