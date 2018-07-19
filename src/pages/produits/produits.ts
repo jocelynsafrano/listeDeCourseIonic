@@ -27,6 +27,8 @@ export class ProduitsPage {
 
   Scanner() {
     this.BarcodeScanner.scan().then(barcodeData => {
+      
+      
       console.log('Barcode data', barcodeData);
      }).catch(err => {
          console.log('Error', err);
