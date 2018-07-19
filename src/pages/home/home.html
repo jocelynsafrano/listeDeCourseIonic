@@ -2,18 +2,32 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Vos listes
+      Votre liste
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-list>
-        <button ion-item *ngFor="let liste of listes">
-          {{liste.nom}}
-        </button>  
-    </ion-list>
+  <ion-list>
+        <ion-item-sliding *ngFor="let liste of listes">
+          <ion-item>
+            <h2>{{liste.nom}}</h2>
+          </ion-item>
+          <ion-item-options side="left">
+            <button ion-button color="light" (tap)="ModalModif(liste)">
+              <ion-icon name="brush"></ion-icon>
+              Modifier
+            </button>
+          </ion-item-options>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (tap)="ModalSuppr(liste)">
+                <ion-icon name="trash"></ion-icon>
+                Supprimer
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
 
   <ion-fab bottom right>
     <button ion-fab mini (tap)= "ModalAjout()"><ion-icon name="add"></ion-icon></button>

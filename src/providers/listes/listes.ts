@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
 
 /*
   Generated class for the ListesProvider provider.
@@ -13,7 +15,14 @@ export class ListesProvider {
 
 //  public listes : any;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public storage: Storage) {
+     var scope = this;
+
+     this.GetListes().then((res)=>{
+       scope.listes = res;
+     })
+
+
   }
 
   GenerateId() {
@@ -25,16 +34,62 @@ export class ListesProvider {
   }
 
   Ajouter(nom) {
+    return new Promise((resolve, reject) => {
     var liste = {id: 0, nom: "", produit : []};
     var id = this.GenerateId();
     liste.id = id;
     liste.nom = nom;
     liste.produit = [];
     this.listes.push(liste);
+    this.storage.set("listes",this.listes);
+    resolve(true);
+    })
   }
 
   GetListes() {
-    return this.listes;
+    var scope = this;
+    return new Promise((resolve, reject)=>{
+      scope.storage.get("listes").then((res)=>{
+        resolve(res);
+      })
+    })
+  }
+
+  Modifier(nouvNom, oldObj) {
+    var scope = this;
+    return new Promise((resolve, reject)=>{
+      var index = scope.listes.indexOf(oldObj);
+      
+      var index = -1;
+      for ( var i=0; i<this.listes.length; i++) {
+        if(this.listes[i].id == oldObj.id) index = i;
+      }
+
+      if (index > -1) {
+        scope.listes[index].nom = nouvNom;
+        this.storage.set("listes",this.listes);
+        resolve(true);
+      }
+    })
+  }
+
+  Supprimer(oldObj){
+    var scope = this;
+    return new Promise((resolve, reject)=>{
+      var index = scope.listes.indexOf(oldObj);
+      
+      var index = -1;
+      for ( var i=0; i<this.listes.length; i++) {
+        if(this.listes[i].id == oldObj.id) index = i;
+      }
+      if (index > -1) {
+        scope.listes.splice(index, 1);
+        this.storage.set("listes",this.listes);
+        resolve(true);
+      }
+    })
+
+
   }
 }
 
